@@ -14,16 +14,21 @@ var serverController = {
     },
     add: function (res,req,name,address,port,con,status) {
         verification.addServer(name,address,port,con,status,function (data) {
-            if (data == "ok"){
+            if (data === "ok"){
                 connection.create(function(db) {
-                    serverModel.add(db,name,address,port,con,status,function (result) {
+                    serverModel.add(db,name,address,port,con,req.body.state,function (result) {
                         res.status(200).json(result);
                     })
                 });
             }else{
-
+                var status = "false";
+                var group = {status:status,message:data};
+                res.status(200).json(group);
             }
         });
+    },
+    delete:function (res,req,id) {
+
     }
 
 }

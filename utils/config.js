@@ -1,6 +1,6 @@
 module.exports.databaseOptions = {
     host     : 'localhost',
-    database : 'cybercin_saghi',
+    database : 'IOT',
     user     : 'root',
     password : '',
     port      : 3306
