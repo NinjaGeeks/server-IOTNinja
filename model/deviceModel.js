@@ -13,7 +13,28 @@ var deviceModel =  {
     },
     loadDevicesUser:async function(db,id,callback){
 
-    }
+    },
+    deleteDevice:async function(db,id,callback){
+
+    },
+    deleteDevicesUser:async function(db,id,callback){
+
+    },
+    deleteDevicesServer:async function(db,id,callback){
+
+    },
+    deleteAll:async function(db,id,callback){
+
+    },
+    changeStateDevice:async function(db,id,callback){
+
+    },
+    starDevice:async function(db,id,callback){
+
+    },
+    removeStarDevice:async function(db,id,callback){
+
+    },
 
 }
 module.exports = deviceModel;
