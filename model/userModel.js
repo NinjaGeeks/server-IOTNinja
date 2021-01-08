@@ -13,9 +13,9 @@ var userModel =  {
         db.query(sql, [token],function (err, result, fields) {
             if (err) throw err;
             if (result.count() === 0) {
-                callback("false");
+                callback(0);
             }else{
-                callback("true");
+                callback(result['user_id']);
             }
         });
     },
@@ -25,11 +25,23 @@ var userModel =  {
     createToken:async function(db,user_id,token,device_id){
 
     },
-    disable:async function(){
-
+    disable:async function(db,user_id,callback){
+        var sql = "UPDATE Users SET status = ?  WHERE id = ?";
+        db.query(sql,[0,user_id], function (err, result, fields) {
+            if (err) throw err;
+            var status = "true";
+            var group = {status:status};
+            callback(group)
+        });
     },
-    enable:async function(){
-
+    enable:async function(db,user_id){
+        var sql = "UPDATE Users SET status = ?  WHERE id = ?";
+        db.query(sql,[1,user_id], function (err, result, fields) {
+            if (err) throw err;
+            var status = "true";
+            var group = {status:status};
+            callback(group)
+        });
     },
     delete:async function(){
 
