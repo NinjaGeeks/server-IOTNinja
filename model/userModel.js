@@ -34,7 +34,7 @@ var userModel =  {
             callback(group)
         });
     },
-    enable:async function(db,user_id){
+    enable:async function(db,user_id,callback){
         var sql = "UPDATE Users SET status = ?  WHERE id = ?";
         db.query(sql,[1,user_id], function (err, result, fields) {
             if (err) throw err;
@@ -43,8 +43,14 @@ var userModel =  {
             callback(group)
         });
     },
-    delete:async function(){
-
+    delete:async function(db,id,callback){
+        var sql = "DELETE FROM Users WHERE id =?";
+        db.query(sql,[id], function (err, result) {
+            if (err) throw err;
+            var status = "true";
+            var group = {status:status};
+            callback(group)
+        });
     }
 }
 module.exports = userModel;
