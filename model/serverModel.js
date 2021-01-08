@@ -47,5 +47,29 @@ var serverModel = {
                callback(group)
           });
      },
+     loadServerUser:function (db,id,callback) {
+          var sql = "SELECT * FROM Server where u_id=?";
+          db.query(sql,id, function (err, result, fields) {
+               if (err) throw err;
+               var status = "true";
+               var group = {status: status, data: result};
+               callback(group);
+          });
+     },
+     checkServerUser:function (db,id,u_id,callback) {
+          var sql = 'select u_id from Server where id=?';
+          db.query(sql, [id],function (err, result, fields) {
+               if (err) throw err;
+               if (result.count() === 0) {
+                    callback(0);
+               }else{
+                    if(result['u_id'] === u_id){
+                         callback(true);
+                    }else{
+                         callback(false);
+                    }
+               }
+          });
+     }
 }
  module.exports = serverModel;
