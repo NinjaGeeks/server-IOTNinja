@@ -17,6 +17,12 @@ var verification = {
         }else{
             callback("Connection is Not supported");
         }
+    },
+    addUser:function (name,lname,email,password,callback) {
+
+    },
+    addDevice:function (name,description,state) {
+
     }
 }
 

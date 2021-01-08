@@ -1,6 +1,6 @@
 var userModel =  {
     load: async function (db,callback) {
-        var sql = "SELECT * FROM Server";
+        var sql = "SELECT * FROM Users";
         db.query(sql, function (err, result, fields) {
             if (err) throw err;
             var status = "true";
