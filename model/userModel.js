@@ -51,6 +51,15 @@ var userModel =  {
             var group = {status:status};
             callback(group)
         });
+    },
+    deleteToken:async function(db,id,callback){
+        var sql = "DELETE FROM UsersToken WHERE u_id =?";
+        db.query(sql,[id], function (err, result) {
+            if (err) throw err;
+            var status = "true";
+            var group = {status:status};
+            callback(group)
+        });
     }
 }
 module.exports = userModel;

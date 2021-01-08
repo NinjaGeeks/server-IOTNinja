@@ -21,7 +21,31 @@ var serverModel = {
           });
      },
      delete:function (db,id,callback) {
-
-     }
+          var sql = "DELETE FROM Server WHERE id =?";
+          db.query(sql,[id], function (err, result) {
+               if (err) throw err;
+               var status = "true";
+               var group = {status:status};
+               callback(group)
+          });
+     },
+     deleteServersUser:function (db,id,callback) {
+          var sql = "DELETE FROM Server WHERE user_id =?";
+          db.query(sql,[id], function (err, result) {
+               if (err) throw err;
+               var status = "true";
+               var group = {status:status};
+               callback(group)
+          });
+     },
+     deleteAll:function (db,callback) {
+          var sql = "DELETE FROM Server";
+          db.query(sql, function (err, result) {
+               if (err) throw err;
+               var status = "true";
+               var group = {status:status};
+               callback(group)
+          });
+     },
 }
  module.exports = serverModel;
