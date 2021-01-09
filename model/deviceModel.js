@@ -26,7 +26,7 @@ var deviceModel =  {
             callback(group);
         });
     },
-    deleteDevice:async function(db,id,callback){
+    delete:async function(db,id,callback){
         var sql = "DELETE FROM Devices WHERE id =?";
         db.query(sql,[id], function (err, result) {
             if (err) throw err;
@@ -87,6 +87,21 @@ var deviceModel =  {
             var status = "true";
             var group = {status:status};
             callback(group)
+        });
+    },
+    checkDeviceUser:function (db,id,u_id,callback) {
+        var sql = 'select u_id from Devices where id=?';
+        db.query(sql, [id],function (err, result, fields) {
+            if (err) throw err;
+            if (result.count() === 0) {
+                callback(0);
+            }else{
+                if(result['u_id'] === u_id){
+                    callback(true);
+                }else{
+                    callback(false);
+                }
+            }
         });
     }
 }
