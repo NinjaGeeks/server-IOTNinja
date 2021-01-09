@@ -9,6 +9,7 @@ var deviceController = {
     load: function (res,req) {
         connection.create(function(db) {
             deviceModel.load(db,function(result) {
+
                 res.status(200).json(result);
             })
         });

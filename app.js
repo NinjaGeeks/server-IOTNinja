@@ -1,4 +1,5 @@
 var createError = require('http-errors');
+const redis = require("redis");
 var express = require('express');
 const PORT = 8080;
 var path = require('path');
@@ -12,6 +13,13 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var serversRouter = require('./routes/server');
 
+const client = redis.createClient();
+
+client.on("error", function(error) {
+  console.error(error);
+});
+
+module.exports.client =  client;
 var app = express();
 
 
@@ -33,7 +41,9 @@ app.use(function(req, res, next) {
   var result = {status: "false", message: "404"};
   res.status(404).json(result);
 });
-
+client.on("error", function(error) {
+  console.error(error);
+});
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
